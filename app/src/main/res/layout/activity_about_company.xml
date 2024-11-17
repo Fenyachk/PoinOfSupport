@@ -17,7 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        >
 
         <TextView
             android:id="@+id/aboutCompanyTitle"
@@ -25,7 +28,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:paddingBottom="16dp"
-            android:text="О компании"
+            android:text="@string/about_company_title"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -36,7 +39,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingExtra="8dp"
             android:paddingBottom="16dp"
-            android:text="Наша компания была основана в 2020 году и с тех пор успешно развивается в сфере технологий и инноваций. Мы стремимся обеспечить наших клиентов качественными продуктами и услугами, удовлетворяя их потребности на каждом этапе сотрудничества. Наша команда состоит из опытных специалистов, которые всегда готовы предложить вам индивидуальные решения."
+            android:text="@string/about_company_desk"
             android:textColor="#333333"
             android:textSize="16sp" />
 
@@ -46,7 +49,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:paddingBottom="8dp"
-            android:text="Наша миссия"
+            android:text="@string/about_company_mission_title"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -57,7 +60,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingExtra="6dp"
             android:paddingBottom="16dp"
-            android:text="Наша миссия — предоставлять клиентам высококачественные продукты, которые способствуют улучшению их жизни. Мы стремимся стать лидером в своей отрасли, продолжая внедрять инновации и лучшие практики."
+            android:text="@string/about_company_mission_desk"
             android:textColor="#333333"
             android:textSize="16sp" />
 

@@ -10,7 +10,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.poinofsupport.model.About;
 import com.example.poinofsupport.model.Contacts;
-import com.example.poinofsupport.model.News;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -31,7 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         } else if (item.getItemId() == R.id.menu_item_news) {
 
-            Intent intent = new Intent(BaseActivity.this, News.class);
+            Intent intent = new Intent(BaseActivity.this, MainActivity.class);
             startActivity(intent);
             return true;
 
