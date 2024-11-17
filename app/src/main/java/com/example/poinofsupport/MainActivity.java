@@ -1,7 +1,9 @@
 package com.example.poinofsupport;
 
 import android.os.Bundle;
+import android.widget.Button;
 
+import com.example.poinofsupport.ui.screens.LoginFragment;
 import com.example.poinofsupport.ui.screens.MainFragment;
 
 public class MainActivity extends BaseFragment {
@@ -14,7 +16,15 @@ public class MainActivity extends BaseFragment {
 
         if (savedInstanceState == null) {
             setContainer();
+            setListenerVolunteerButton();
         }
+    }
+
+    private void setListenerVolunteerButton() {
+        Button volunteerButton = findViewById(R.id.volunteer_button);
+        volunteerButton.setOnClickListener(view -> {
+            setFragment(LoginFragment.class);
+        });
     }
 
     private void setContainer() {

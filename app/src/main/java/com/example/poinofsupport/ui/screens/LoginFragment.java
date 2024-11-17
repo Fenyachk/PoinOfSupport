@@ -6,6 +6,6 @@ import com.example.poinofsupport.R;
 
 public class LoginFragment extends Fragment {
     public LoginFragment() {
-        super(R.layout.contacts_fragment);
+        super(R.layout.registration_form_fragment);
     }
 }

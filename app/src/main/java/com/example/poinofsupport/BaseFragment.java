@@ -1,18 +1,23 @@
 package com.example.poinofsupport;
 
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import com.example.poinofsupport.ui.screens.AboutFragment;
 import com.example.poinofsupport.ui.screens.ContactsFragment;
+import com.example.poinofsupport.ui.screens.LoginFragment;
 import com.example.poinofsupport.ui.screens.MainFragment;
 
 
 public abstract class BaseFragment extends AppCompatActivity {
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -48,6 +53,9 @@ public abstract class BaseFragment extends AppCompatActivity {
         }
         else if (id == R.id.menu_item_contacts) {
             return ContactsFragment.class;
+        }
+        else if (id == R.id.menu_item_login) {
+            return LoginFragment.class;
         }
         else {
             return null;
