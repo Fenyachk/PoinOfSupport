@@ -1,9 +1,5 @@
 package com.example.poinofsupport;
 
-import static androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_CLOSE;
-import static androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN;
-
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,14 +7,12 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.example.poinofsupport.model.About;
-import com.example.poinofsupport.model.Contacts;
 import com.example.poinofsupport.ui.screens.AboutFragment;
+import com.example.poinofsupport.ui.screens.ContactsFragment;
+import com.example.poinofsupport.ui.screens.MainFragment;
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseFragment extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -48,7 +42,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     public Class<? extends Fragment> getFragmentById(int id) {
         if (id == R.id.menu_item_about) {
             return AboutFragment.class;
-        } else {
+        }
+        else if (id == R.id.menu_item_news) {
+            return MainFragment.class;
+        }
+        else if (id == R.id.menu_item_contacts) {
+            return ContactsFragment.class;
+        }
+        else {
             return null;
         }
     }

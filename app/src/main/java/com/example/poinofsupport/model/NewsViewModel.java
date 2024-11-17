@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.poinofsupport.repository.RepoImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,21 +13,20 @@ public class NewsViewModel extends ViewModel {
 
 
     private final MutableLiveData<List<News>> news = new MutableLiveData<>(new ArrayList<>());
+    private static final RepoImpl repoImpl = new RepoImpl();
     public LiveData<List<News>> getUiState() {
         return news;
     }
 
     public void getNews() {
 
-        List<News> newsList = new ArrayList<>();
+        List<News> newsList = repoImpl.getAllNews();
+        news.setValue(newsList);
+    }
 
-        newsList.add(
-                new News("01.01.2024", "Автор 1", "Заголовок 1", "Текст новости 1")
-        );
-        newsList.add(
-                new News("02.01.2024", "Автор 2", "Заголовок 2", "Текст новости 2")
-        );
 
+    public void getNewsById(int newsId) {
+        List<News> newsList = repoImpl.getNewsById(newsId);
         news.setValue(newsList);
     }
 

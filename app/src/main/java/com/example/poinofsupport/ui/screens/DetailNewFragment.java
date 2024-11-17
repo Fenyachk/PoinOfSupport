@@ -17,16 +17,20 @@ import com.example.poinofsupport.databinding.MainFragmentBinding;
 import com.example.poinofsupport.model.NewsViewModel;
 import com.example.poinofsupport.utils.NewsAdapter;
 
-public class MainFragment extends Fragment {
+public class DetailNewFragment extends Fragment {
 
+
+    private final int id;
     private MainFragmentBinding binding;
     private final NewsAdapter adapter = new NewsAdapter();
 
     private NewsViewModel viewModel;
 
-    public MainFragment() {
-        super(R.layout.main_fragment);
+    public DetailNewFragment(int newsId) {
+        super(R.layout.news_detail_fragment);
+        this.id = newsId;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,7 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         collectNews();
         setViews(view.getContext());
-        viewModel.getNews();
+        viewModel.getNewsById(this.id);
     }
 
     private void collectNews() {
@@ -66,4 +70,14 @@ public class MainFragment extends Fragment {
         binding.recycler.setAdapter(adapter);
         binding.recycler.setLayoutManager(new LinearLayoutManager(context));
     }
+
+    public Class<? extends Fragment> getFragmentById(int id) {
+        if (id == R.id.menu_item_about) {
+            return DetailNewFragment.class;
+        }
+        else {
+            return null;
+        }
+    }
+
 }

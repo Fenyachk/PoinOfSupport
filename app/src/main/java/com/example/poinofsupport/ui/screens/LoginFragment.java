@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.poinofsupport.R;
 
-public class AboutFragment extends Fragment {
-    public AboutFragment() {
-        super(R.layout.about_fragment);
+public class LoginFragment extends Fragment {
+    public LoginFragment() {
+        super(R.layout.contacts_fragment);
     }
 }

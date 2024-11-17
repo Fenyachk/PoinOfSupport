@@ -2,17 +2,9 @@ package com.example.poinofsupport;
 
 import android.os.Bundle;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.poinofsupport.model.News;
 import com.example.poinofsupport.ui.screens.MainFragment;
-import com.example.poinofsupport.utils.NewsAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseFragment {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
