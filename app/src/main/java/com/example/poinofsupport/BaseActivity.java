@@ -1,5 +1,8 @@
 package com.example.poinofsupport;
 
+import static androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_CLOSE;
+import static androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN;
+
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -7,9 +10,12 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.poinofsupport.model.About;
 import com.example.poinofsupport.model.Contacts;
+import com.example.poinofsupport.ui.screens.AboutFragment;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -22,26 +28,28 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_item_about) {
+        Class<? extends Fragment> menuFragment = getFragmentById(item.getItemId());
 
-            Intent intent = new Intent(BaseActivity.this, About.class);
-            startActivity(intent);
-            return true;
-
-        } else if (item.getItemId() == R.id.menu_item_news) {
-
-            Intent intent = new Intent(BaseActivity.this, MainActivity.class);
-            startActivity(intent);
-            return true;
-
-        } else if (item.getItemId() == R.id.menu_item_contacts) {
-
-            Intent intent = new Intent(BaseActivity.this, Contacts.class);
-            startActivity(intent);
-            return true;
-
-        } else {
+        if (menuFragment == null) {
             return super.onOptionsItemSelected(item);
+        } else {
+            setFragment(menuFragment);
+            return true;
+        }
+    }
+
+    public void setFragment(Class<? extends Fragment> fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, fragment, null)
+                .addToBackStack(fragment.getName())
+                .commit();
+    }
+
+    public Class<? extends Fragment> getFragmentById(int id) {
+        if (id == R.id.menu_item_about) {
+            return AboutFragment.class;
+        } else {
+            return null;
         }
     }
 

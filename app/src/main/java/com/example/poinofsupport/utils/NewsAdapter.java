@@ -4,9 +4,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.poinofsupport.R;
 import com.example.poinofsupport.model.News;
 
 import java.util.List;
@@ -16,8 +16,8 @@ class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
     private List<News> newsList;
 
-    public NewsAdapter(List<News> newsList) {
-        this.newsList = newsList;
+    public void setNews(List<News> news) {
+        this.newsList = news;
     }
 
     @NonNull
@@ -30,6 +30,10 @@ class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         News news = newsList.get(position);
+        bind(news, holder);
+    }
+
+    private void bind(News news, NewsViewHolder holder) {
         holder.date.setText(news.getDate());
         holder.author.setText(news.getAuthor());
         holder.title.setText(news.getTitle());

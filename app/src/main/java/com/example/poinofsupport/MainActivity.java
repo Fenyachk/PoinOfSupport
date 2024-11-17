@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.poinofsupport.model.News;
+import com.example.poinofsupport.ui.screens.MainFragment;
 import com.example.poinofsupport.utils.NewsAdapter;
 
 import java.util.ArrayList;
@@ -19,14 +20,15 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         setToolbar();
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        if (savedInstanceState == null) {
+            setContainer();
+        }
+    }
 
-        List<News> newsList = new ArrayList<>();
-        newsList.add(new News("01.01.2024", "Автор 1", "Заголовок 1", "Текст новости 1"));
-        newsList.add(new News("02.01.2024", "Автор 2", "Заголовок 2", "Текст новости 2"));
-
-        NewsAdapter adapter = new NewsAdapter(newsList);
-        recyclerView.setAdapter(adapter);
+    private void setContainer() {
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.container, MainFragment.class, null)
+                .commit();
     }
 }

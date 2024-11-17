@@ -13,6 +13,10 @@ public class News {
         this.content = content;
     }
 
+    public News() {
+        super();
+    }
+
     public String getDate() {
         return date;
     }
