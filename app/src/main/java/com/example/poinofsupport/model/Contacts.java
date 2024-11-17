@@ -12,7 +12,7 @@ public class Contacts extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_company);
+        setContentView(R.layout.activity_contacts);
         setToolbar();
     }
 }

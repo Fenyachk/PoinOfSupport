@@ -4,4 +4,6 @@
     <string name="about_company_title">О нашей организации</string>
     <string name="about_company_mission_title">Наша миссия</string>
     <string name="about_company_mission_desk">Наша миссия — искать, вдохновлять и поддерживать волонтёров, которые помогают подросткам из детских домов. Ведь каждому человеку нужен человек!</string>
+    <string name="contacts_title">Контакты</string>
+    <string name="contacts_desk">+7 991 112 77 36\nemail: skipa85@mail.ru\nМурманская область, г. Североморск,\nул. Вице-адмирала Падорина, дом 23</string>
 </resources>
