@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.poinofsupport.R;
 
-public class LoginFragment extends Fragment {
-    public LoginFragment() {
-        super(R.layout.login_fragment);
+public class UsersFragment extends Fragment {
+    public UsersFragment() {
+        super(R.layout.user_profile);
     }
 }

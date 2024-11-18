@@ -20,13 +20,6 @@ public class MainActivity extends BaseFragment {
         }
     }
 
-    private void setListenerVolunteerButton() {
-        Button volunteerButton = findViewById(R.id.volunteer_button);
-        volunteerButton.setOnClickListener(view -> {
-            setFragment(LoginFragment.class);
-        });
-    }
-
     private void setContainer() {
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)

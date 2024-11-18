@@ -13,7 +13,8 @@ import com.example.poinofsupport.ui.screens.AboutFragment;
 import com.example.poinofsupport.ui.screens.ContactsFragment;
 import com.example.poinofsupport.ui.screens.LoginFragment;
 import com.example.poinofsupport.ui.screens.MainFragment;
-
+import com.example.poinofsupport.ui.screens.RegistrationFragment;
+import com.example.poinofsupport.ui.screens.UsersFragment;
 
 public abstract class BaseFragment extends AppCompatActivity {
 
@@ -57,9 +58,20 @@ public abstract class BaseFragment extends AppCompatActivity {
         else if (id == R.id.menu_item_login) {
             return LoginFragment.class;
         }
+        else if (id == R.id.menu_item_user) {
+            return UsersFragment.class;
+        }
         else {
             return null;
         }
+    }
+
+
+    public void setListenerVolunteerButton() {
+        Button volunteerButton = findViewById(R.id.volunteer_button);
+        volunteerButton.setOnClickListener(view -> {
+            setFragment(RegistrationFragment.class);
+        });
     }
 
     public void setToolbar() {
