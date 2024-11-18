@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,14 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.poinofsupport.R;
 import com.example.poinofsupport.databinding.MainFragmentBinding;
 import com.example.poinofsupport.model.NewsViewModel;
+import com.example.poinofsupport.utils.INews;
 import com.example.poinofsupport.utils.NewsAdapter;
 
-public class DetailNewFragment extends Fragment {
+public class DetailNewFragment extends Fragment implements INews {
 
+    static String DETAIL_NEWS_ID = "DETAIL_NEWS_ID";
 
-    private final int id;
+    private int id;
     private MainFragmentBinding binding;
-    private final NewsAdapter adapter = new NewsAdapter();
+    private final NewsAdapter adapter = new NewsAdapter(this);
 
     private NewsViewModel viewModel;
 
@@ -31,10 +34,15 @@ public class DetailNewFragment extends Fragment {
         this.id = newsId;
     }
 
+    public DetailNewFragment() {
+        super(R.layout.news_detail_fragment);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
+        id = getArguments() != null ? getArguments().getInt(DETAIL_NEWS_ID) : -1;
     }
 
     @Nullable
@@ -74,10 +82,13 @@ public class DetailNewFragment extends Fragment {
     public Class<? extends Fragment> getFragmentById(int id) {
         if (id == R.id.menu_item_about) {
             return DetailNewFragment.class;
-        }
-        else {
+        } else {
             return null;
         }
     }
 
+    @Override
+    public void onClick(int id) {
+        Toast.makeText(getContext(), "News clicked" + id, Toast.LENGTH_SHORT).show();
+    }
 }
