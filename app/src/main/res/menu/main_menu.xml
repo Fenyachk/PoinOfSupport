@@ -2,11 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_item_about"
-        android:title="О фонде" />
+        android:title="@string/menu_item_about" />
     <item
         android:id="@+id/menu_item_news"
-        android:title="Отчеты волонтеров" />
+        android:title="@string/menu_item_news" />
     <item
         android:id="@+id/menu_item_contacts"
-        android:title="Контакты" />
+        android:title="@string/menu_item_contacts" />
+    <item
+        android:id="@+id/menu_item_login"
+        android:title="@string/enter" />
+    <item
+            android:id="@+id/menu_item_user"
+            android:title="юзер" />
 </menu>
