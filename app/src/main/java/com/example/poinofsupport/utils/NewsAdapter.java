@@ -1,5 +1,6 @@
 package com.example.poinofsupport.utils;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -29,6 +30,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         return new NewsViewHolder(
                 NewsItemBinding.inflate(
                         LayoutInflater.from(parent.getContext()),

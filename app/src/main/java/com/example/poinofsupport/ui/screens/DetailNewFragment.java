@@ -2,6 +2,7 @@ package com.example.poinofsupport.ui.screens;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,13 +80,6 @@ public class DetailNewFragment extends Fragment implements INews {
         binding.recycler.setLayoutManager(new LinearLayoutManager(context));
     }
 
-    public Class<? extends Fragment> getFragmentById(int id) {
-        if (id == R.id.menu_item_about) {
-            return DetailNewFragment.class;
-        } else {
-            return null;
-        }
-    }
 
     @Override
     public void onClick(int id) {

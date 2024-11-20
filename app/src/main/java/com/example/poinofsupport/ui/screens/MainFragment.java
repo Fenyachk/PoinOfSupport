@@ -75,16 +75,13 @@ public class MainFragment extends Fragment implements INews {
 
     @Override
     public void onClick(int id) {
-        Log.d("CheckCheck", "Check " + id);
         FragmentManager manager = requireActivity().getSupportFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putInt(DETAIL_NEWS_ID, id);
+            manager.beginTransaction()
+                    .replace(R.id.container, DetailNewFragment.class, bundle)
+                    .addToBackStack(DetailNewFragment.class.getName())
+                    .commit();
 
-        Bundle bundle = new Bundle();
-        bundle.putInt(DETAIL_NEWS_ID, id);
-
-        manager.beginTransaction()
-                .replace(R.id.container, DetailNewFragment.class, bundle)
-                .addToBackStack(DetailNewFragment.class.getName())
-                .commit();
     }
-
 }
