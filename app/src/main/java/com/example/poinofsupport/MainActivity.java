@@ -1,12 +1,10 @@
 package com.example.poinofsupport;
 
 import android.os.Bundle;
-import android.widget.Button;
 
-import com.example.poinofsupport.ui.screens.LoginFragment;
 import com.example.poinofsupport.ui.screens.MainFragment;
 
-public class MainActivity extends BaseFragment {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +21,7 @@ public class MainActivity extends BaseFragment {
     private void setContainer() {
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.container, MainFragment.class, null)
+                .add(R.id.container, MainFragment.class, null, MainFragment.TAG)
                 .commit();
     }
 }

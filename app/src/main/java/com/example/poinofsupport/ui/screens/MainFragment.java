@@ -11,22 +11,26 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.poinofsupport.R;
+import com.example.poinofsupport.base.ui.BaseFragment;
 import com.example.poinofsupport.databinding.MainFragmentBinding;
+import com.example.poinofsupport.model.News;
 import com.example.poinofsupport.model.NewsViewModel;
 import com.example.poinofsupport.utils.INews;
 import com.example.poinofsupport.utils.NewsAdapter;
 
-public class MainFragment extends Fragment implements INews {
+import java.util.List;
 
-    private MainFragmentBinding binding;
-    private final NewsAdapter adapter = new NewsAdapter(this);
+public class MainFragment extends BaseFragment<MainFragmentBinding> implements INews {
 
+    public static final String TAG = "MainFragment";
+
+    private final NewsAdapter adapter = new NewsAdapter();
     private NewsViewModel viewModel;
 
     public MainFragment() {
@@ -39,49 +43,49 @@ public class MainFragment extends Fragment implements INews {
         viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(
+    public MainFragmentBinding getBinding(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState
-    ) {
-        binding = MainFragmentBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+            @Nullable Bundle savedInstanceState) {
+        return MainFragmentBinding.inflate(inflater, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        collectNews();
+        adapter.addListeners(this);
         setViews(view.getContext());
         viewModel.getNews();
-    }
-
-    private void collectNews() {
-        viewModel.getUiState().observe(getViewLifecycleOwner(), adapter::setNews);
     }
 
     private void setViews(Context context) {
         binding.recycler.setAdapter(adapter);
         binding.recycler.setLayoutManager(new LinearLayoutManager(context));
+
+        collectNews(adapter::setNews);
+    }
+
+    private void collectNews(Observer<? super List<News>> observer) {
+        viewModel.getUiState().observe(getViewLifecycleOwner(), observer);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        adapter.clearListeners();
     }
 
     @Override
     public void onClick(int id) {
         FragmentManager manager = requireActivity().getSupportFragmentManager();
-            Bundle bundle = new Bundle();
-            bundle.putInt(DETAIL_NEWS_ID, id);
-            manager.beginTransaction()
-                    .replace(R.id.container, DetailNewFragment.class, bundle)
-                    .addToBackStack(DetailNewFragment.class.getName())
-                    .commit();
+        Bundle bundle = new Bundle();
+        bundle.putInt(DETAIL_NEWS_ID, id);
+        manager.beginTransaction()
+                .replace(R.id.container, DetailNewFragment.class, bundle)
+                .addToBackStack(null)
+                .commit();
 
+        Log.d("CheckCheck", id + " " + this + " " + manager.getFragments());
     }
 }

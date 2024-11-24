@@ -1,6 +1,5 @@
 package com.example.poinofsupport;
 
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,8 +15,7 @@ import com.example.poinofsupport.ui.screens.MainFragment;
 import com.example.poinofsupport.ui.screens.RegistrationFragment;
 import com.example.poinofsupport.ui.screens.UsersFragment;
 
-public abstract class BaseFragment extends AppCompatActivity {
-
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,8 +38,8 @@ public abstract class BaseFragment extends AppCompatActivity {
 
     public void setFragment(Class<? extends Fragment> fragment) {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, fragment, null)
-                .addToBackStack(fragment.getName())
+                .replace(R.id.container, fragment, null, fragment.getName())
+                .addToBackStack(null)
                 .commit();
     }
 

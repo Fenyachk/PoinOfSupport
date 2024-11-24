@@ -16,21 +16,23 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     private static final String DATE_FORMAT = "%02d";
     private List<News> newsList;
-    private final INews actions;
-
-    public NewsAdapter(INews actions) {
-        super();
-        this.actions = actions;
-    }
+    private INews actions;
 
     public void setNews(List<News> news) {
         this.newsList = news;
     }
 
+    public void addListeners(INews actions) {
+        this.actions = actions;
+    }
+
+    public void clearListeners() {
+        actions = null;
+    }
+
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         return new NewsViewHolder(
                 NewsItemBinding.inflate(
                         LayoutInflater.from(parent.getContext()),
@@ -44,7 +46,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         News news = newsList.get(position);
         holder.bind(news);
-        holder.itemView.setOnClickListener(view -> actions.onClick(news.getId()));
+
+        if (actions != null) {
+            Log.d("CheckCheck", holder.binding.getRoot() + " ");
+            holder.binding.getRoot().setOnClickListener(view -> actions.onClick(news.getId()));
+        }
     }
 
     @Override

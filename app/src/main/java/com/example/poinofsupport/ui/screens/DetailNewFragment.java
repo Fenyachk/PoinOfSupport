@@ -26,7 +26,7 @@ public class DetailNewFragment extends Fragment implements INews {
 
     private int id;
     private MainFragmentBinding binding;
-    private final NewsAdapter adapter = new NewsAdapter(this);
+    private final NewsAdapter adapter = new NewsAdapter();
 
     private NewsViewModel viewModel;
 
