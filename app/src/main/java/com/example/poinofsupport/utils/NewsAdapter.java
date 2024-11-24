@@ -1,39 +1,56 @@
 package com.example.poinofsupport.utils;
 
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.poinofsupport.databinding.NewsItemBinding;
 import com.example.poinofsupport.model.News;
 
 import java.util.List;
 
-public
-class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
+    private static final String DATE_FORMAT = "%02d";
     private List<News> newsList;
+    private INews actions;
 
-    public NewsAdapter(List<News> newsList) {
-        this.newsList = newsList;
+    public void setNews(List<News> news) {
+        this.newsList = news;
+    }
+
+    public void addListeners(INews actions) {
+        this.actions = actions;
+    }
+
+    public void clearListeners() {
+        actions = null;
     }
 
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_item, parent, false);
-        return new NewsViewHolder(view);
+        return new NewsViewHolder(
+                NewsItemBinding.inflate(
+                        LayoutInflater.from(parent.getContext()),
+                        parent,
+                        false
+                )
+        );
     }
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         News news = newsList.get(position);
-        holder.date.setText(news.getDate());
-        holder.author.setText(news.getAuthor());
-        holder.title.setText(news.getTitle());
-        holder.content.setText(news.getContent());
+        holder.bind(news);
+
+        if (actions != null) {
+            Log.d("CheckCheck", holder.binding.getRoot() + " ");
+            holder.binding.getRoot().setOnClickListener(view -> actions.onClick(news.getId()));
+        }
     }
 
     @Override
@@ -42,14 +59,18 @@ class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     }
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder {
-        TextView date, author, title, content;
+        private final NewsItemBinding binding;
 
-        public NewsViewHolder(@NonNull View itemView) {
-            super(itemView);
-            date = itemView.findViewById(R.id.news_date);
-            author = itemView.findViewById(R.id.news_author);
-            title = itemView.findViewById(R.id.news_title);
-            content = itemView.findViewById(R.id.news_content);
+        public NewsViewHolder(@NonNull NewsItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        public void bind(News news) {
+            binding.newsDate.setText(Utils.formattedDate(news.getDate(), DATE_FORMAT));
+            binding.newsAuthor.setText(news.getAuthor());
+            binding.newsTitle.setText(news.getTitle());
+            binding.newsContent.setText(news.getDescriptionContent());
         }
     }
 }

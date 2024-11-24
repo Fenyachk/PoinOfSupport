@@ -6,4 +6,11 @@
     <string name="about_company_mission_desk">Наша миссия — искать, вдохновлять и поддерживать волонтёров, которые помогают подросткам из детских домов. Ведь каждому человеку нужен человек!</string>
     <string name="contacts_title">Контакты</string>
     <string name="contacts_desk">+7 991 112 77 36\nemail: skipa85@mail.ru\nМурманская область, г. Североморск,\nул. Вице-адмирала Падорина, дом 23</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter">Войти</string>
+    <string name="menu_item_about">О фонде</string>
+    <string name="menu_item_news">Отчеты волонтеров</string>
+    <string name="menu_item_contacts">Контакты</string>
+    <string name="button_volunteer">Стать волонтером</string>
 </resources>
